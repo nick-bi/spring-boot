@@ -20,6 +20,21 @@
 + 创建MySQL数据库, 名称为: tx-manager
 
 + 创建数据表
+```
+CREATE TABLE `t_tx_exception`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `group_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `unit_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `mod_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `transaction_state` tinyint(4) NULL DEFAULT NULL,
+  `registrar` tinyint(4) NULL DEFAULT NULL,
+  `remark` varchar(4096) NULL DEFAULT  NULL,
+  `ex_state` tinyint(4) NULL DEFAULT NULL COMMENT '0 未解决 1已解决',
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+```
+
 
 ### tm配置信息
 ```
@@ -56,9 +71,6 @@ mybatis.configuration.use-generated-keys=true
 #redis 密码
 #spring.redis.password=
 ```
-
-
-
 ### tc依赖
 ```
 <dependency>
@@ -73,8 +85,29 @@ mybatis.configuration.use-generated-keys=true
             <version>5.0.2.RELEASE</version>
         </dependency>
 ```
-### TC开启分布式事务注解
-evernotecid://8E6AB979-65A2-4875-8598-3E7C3CEEC2B9/appyinxiangcom/13247496/ENResource/p4379
+### TC开启分布式事务注解```@EnableDistributedTransaction```
+```
+package com.nickbi.txlcn.apptwo;
+
+import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@EnableDistributedTransaction
+@SpringBootApplication
+@EnableDiscoveryClient
+@MapperScan("com.nickbi.txlcn.apptwo.dao")
+public class AppTwoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AppTwoApplication.class, args);
+	}
+
+}
+
+```
 ### TC TM配置
 ```
 # 默认之配置为TM的本机默认端口
