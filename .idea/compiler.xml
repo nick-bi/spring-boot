@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tm" />
+        <module name="apptwo" />
+        <module name="solr" />
+        <module name="appone" />
+        <module name="kafka" />
+        <module name="activiti" />
+        <module name="spring-boot" />
+        <module name="elasticsearch" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="appone" target="1.5" />
+      <module name="apptwo" target="1.5" />
+      <module name="service-one" target="1.8" />
+      <module name="tm" target="1.5" />
+      <module name="txlcn" target="1.5" />
+      <module name="txlcn-tm" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="activiti" options="-parameters" />
+      <module name="elasticsearch" options="-parameters" />
+      <module name="kafka" options="-parameters" />
+      <module name="service-one" options="-parameters" />
+      <module name="solr" options="-parameters" />
+      <module name="tm" options="" />
+      <module name="txlcn-tm" options="-parameters" />
+    </option>
+  </component>
+</project>

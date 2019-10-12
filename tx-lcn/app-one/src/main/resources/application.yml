@@ -1,0 +1,10 @@
+mybatis-plus:
+  mapper-locations: classpath*:mappers/*.xml
+  global-config:
+    db-config:
+      id-type: AUTO
+  configuration:
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: com.baomidou.mybatisplus.extension.handlers.MybatisEnumTypeHandler
+    call-setters-on-nulls: true
+  type-handlers-package: com.feicui.jewelry.configurer.mybatisHandlers
